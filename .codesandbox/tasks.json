@@ -7,7 +7,10 @@
     "start": {
       "name": "start",
       "command": "php -S localhost:8080",
-      "runAtStart": true
+      "runAtStart": true,
+      "preview": {
+        "port": 8080
+      }
     }
   }
 }
