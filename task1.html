@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1</title>
+</head>
+<body>
+    <h1>API Data</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Request Type</th>
+                <th>Travel Date</th>
+                <th>Options Code</th>
+                <th>Status</th>
+                <th>Supplier Name</th>
+                <th>Currency</th>
+                <th>Amount</th>
+                <th>Visit Date</th>
+            </tr>
+        </thead>
+        <tbody id="dataRows">
+            
+        </tbody>
+    </table>
+
+    <script>
+        const apiUrl = 'https://starfish-app-eay5q.ondigitalocean.app/dailylogs';
+
+        async function fetchData(){
+            try{
+                const response = await fetch(apiUrl, {mode: 'no-cors'});
+                if(!response.ok){
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                const dataRows = document.getElementById('dataRows');
+                data.forEach((item) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.booking_id}</td>
+                        <td>${item.req_type}</td>
+                        <td>${item.trvel_date}</td>
+                        <td>${item.options_code}</td>
+                        <td>${item.status}</td>
+                        <td>${item.supp_name}</td>
+                        <td>${item.cur}</td>
+                        <td>${item.amt}</td>
+                        <td>${item.vst_date}</td>
+                    `;
+                    dataRows.appendChild(row);
+                });
+            } catch(error){
+                console.error('Error fetching data: ', error);
+            }
+        }
+        fetchData();
+    </script>
+</body>
+</html>
