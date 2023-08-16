@@ -1,12 +1,10 @@
-<html>
+<?php
 
-<head>
-    <title>PHP Starter</title>
-</head>
+$unstructured = fopen("unstructured.txt", "r");
 
-<body>
-    <h1>PHP Starter in CodeSandbox</h1>
-    <?php phpinfo(); ?>
-</body>
+while($line = fgets($unstructured)){
+    print_r(explode("#",$line));
+    echo copy()
+}
 
-</html>
+?>
